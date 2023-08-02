@@ -4,6 +4,9 @@
 
 @section('content')
 
+<x-btn-create>
+    <x-slot name="route">/  funcionarios/novo</x-slot>
+    <x-slot name="title">Cadastrar funcionarios</x-slot>
 <x-btn-create/>
 <h1 class="fs-2 mb-3 "> Lista funcionarios</h1>
 <table class="table table-striped">

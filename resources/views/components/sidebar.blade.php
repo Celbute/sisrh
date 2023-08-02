@@ -21,12 +21,12 @@
         </li>
         <li class="nav-item">
             <a href="#" class="nav-link text-white btn btn-primary text-start">
-                <i class="bi bi-building mx-2 fs-5 align-middle"></i>cargos
+                <i class="bi bi-card-checklist mx-2 fs-5 align-middle"></i>Cargos
             </a>
         </li>
         <li class="nav-item">
             <a href="#" class="nav-link text-white btn btn-primary text-start">
-                <i class="bi bi-star mx-2 fs-5 align-middle"></i>beneficios
+                <i class="bi bi-star mx-2 fs-5 align-middle"></i>Beneficios
             </a>
         </li>
 
