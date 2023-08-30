@@ -30,7 +30,7 @@
                     @if (empty($funcionario->foto))
                         <img src="/images/sombra_funcionario.jpg" alt="foto" class="img-thumbnail" width="70">
                     @else
-
+                    <img src="{{ url("storage/funcionarios/$funcionario->foto")}}" alt="foto" class="img-thumbnail" width="70">
                     @endif
                 </td>
                 <td>{{$funcionario->nome}}</td>
@@ -38,7 +38,7 @@
                 <td class="text-center">{{$funcionario->Cargo->descricao}}</td>
                 <td class="text-center">{{$funcionario->departamento->nome}}</td>
                 <td>
-                    <a href="" title="Editar" class="btn btn-primary"><i class="bi bi-pen"></i></a>
+                    <a href="{{ route('funcionarios.edit', $funcionario->id) }}" class="btn btn-primary"><i class="bi bi-pen"></i></a>
                     <a href="" title="Deletar" class="btn btn-danger"><i class="bi bi-trash"></i></a>
                 </td>
             </tr>
