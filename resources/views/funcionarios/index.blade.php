@@ -28,14 +28,13 @@
                 <th scope="row" class="text-center">{{$funcionario->id }}</th>
                 <td class="text-aling">
                     @if (empty($funcionario->foto))
-
                         <img src="/images/sombra_funcionario.jpg" alt="foto" class="img-thumbnail" width="70">
                     @else
-                        Preenchido
+
                     @endif
                 </td>
                 <td>{{$funcionario->nome}}</td>
-                <td>{{$funcionario->descricao}}</td>
+
                 <td class="text-center">{{$funcionario->Cargo->descricao}}</td>
                 <td class="text-center">{{$funcionario->departamento->nome}}</td>
                 <td>

@@ -55,15 +55,17 @@
 </div>
 
 <div class="col-md-4">
-    <label for="data_contrtacao" class="form-label">Data de contratação</label>
-    <input type="date" class="form-control" id="data_contrtacao" name="data_contrtacao" required>
+    <label for="data_contratacao" class="form-label">Data de contratação</label>
+    <input type="date" class="form-control" id="data_contratacao" name="data_contratacao" required>
 </div>
 <div class="col-md-4">
     <label for="data_desligamento" class="form-label">Data de desligamento</label>
-    <input type="date" class="form-control" id="data_desligamento" name="data_desligamento" required>
+    <input type="date" class="form-control" id="data_desligamento" name="data_desligamento">
 </div>
-
-<div class="col-12">
-    <label for="foto">Foto</label>
+<div class="col-md-2">
+    <img src="{{asset('images/sombra_funcionario.jpg')}}" alt="" class="img-thumbnail">
+</div>
+<div class="col-md-10">
+    <label for="foto" class="form-label">Foto</label>
     <input type="file" class="form-control" id="foto" name="foto">
 </div>
