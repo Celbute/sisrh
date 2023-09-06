@@ -10,9 +10,9 @@
     <label for="sexo" class="form-label">Sexo</label>
     <select id="sexo" name="sexo"  value="{{$funcionario->sexo ?? ""}}" class="form-select" required>
         <option value=""></option>
-        <option value="m" @if(@isset($funcionario->sexo)) @selected($funcionario->sexo == 'm') @endif>Masculino</option>
-        <option value="f" @if(@isset($funcionario->sexo)) @selected($funcionario->sexo == 'f') @endif>Feminino</option>
-        <option value="g" @if(@isset($funcionario->sexo)) @selected($funcionario->sexo == 'g') @endif>outros</option>
+        <option value="m" @if(isset($funcionario->sexo)) @selected($funcionario->sexo == 'm') @endif>Masculino</option>
+        <option value="f" @if(isset($funcionario->sexo)) @selected($funcionario->sexo == 'f') @endif>Feminino</option>
+        <option value="g" @if(isset($funcionario->sexo)) @selected($funcionario->sexo == 'g') @endif>outros</option>
     </select>
 </div>
 <div class="col md-4">
@@ -34,7 +34,7 @@
     <select id="departamento_id" name="departamento_id"  value="{{$funcionario->departamento_id ?? ""}}" class="form-select" required>
         <option value="">--</option>
         @foreach ($departamentos as $departamento)
-            <option value="{{ $departamento->id }}">{{ $departamento->nome }} </option>
+            <option value="{{ $departamento->id }}" @if(isset($funcionario->departamento_id)) @endif)>{{ $departamento->nome }} </option>
         @endforeach
     </select>
 </div>
@@ -44,7 +44,10 @@
         <option value="">--</option>
 
         @foreach ($cargos as $cargo)
-            <option value="{{ $cargo->id }}">{{ $cargo->descricao }} </option>
+            <option value="{{ $cargo->id }}"
+                @if(isset($funcionario->cargo_id))
+                 @selected($funcionario->cargo_id == $cargo->id)
+                @endif>{{ $cargo->descricao }} </option>
         @endforeach
     </select>
 </div>
@@ -63,7 +66,11 @@
     <input type="date" class="form-control" id="data_desligamento" name="data_desligamento"  value="{{$funcionario->data_desligamento ?? ""}}">
 </div>
 <div class="col-md-2">
+    @if(isset($funcionario->foto))
+    <img src="{{asset("storage/funcionarios/$funcionario->foto")}}" class="img-thumbnail">
+    @else
     <img src="{{asset('images/sombra_funcionario.jpg')}}" alt="" class="img-thumbnail">
+    @endif
 </div>
 <div class="col-md-10">
     <label for="foto" class="form-label">Foto</label>

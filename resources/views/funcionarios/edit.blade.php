@@ -4,7 +4,7 @@
 
 @section('content')
     <h1 class="fs-2 mb-3"> Alterar Funcionarios</h1>
-    <form class="row g-3" method="POST" action="{{route('funcionarios.store')}}"
+    <form class="row g-3" method="POST" action="{{route('funcionarios.update', $funcionario->id)}}"
     enctype="multipart/form-data">
 
     @csrf
