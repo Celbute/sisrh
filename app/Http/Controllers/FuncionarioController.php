@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cargo;
 use App\Models\Departamento;
 use App\Models\Funcionario;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -117,6 +118,14 @@ class FuncionarioController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $funcionario = Funcionario::find($id);
+
+        if($funcionario['foto'] != null){
+            Storage::delete('public/funcionario/'.$funcionario['foto']);
+        }
+
+        $funcionario->delete();
+
+        return redirect()->route('funcionarios.index')->with('sucesso','funcionario excluido com sucesso');
     }
 }

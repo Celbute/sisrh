@@ -42,9 +42,9 @@
                     <a href="" title="Deletar" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-delete{{$funcionario->id}}" ><i class="bi bi-trash" ></i></a>
                     <x-modal-delete>
                             <x-slot name="id" >{{$funcionario->id}}</x-slot>
-                            <x-slot name="tipo" >{{$funcionario->tipo}}</x-slot>
+                            <x-slot name="tipo" >funcionário</x-slot>
                             <x-slot name="nome" >{{$funcionario->nome}}</x-slot>
-                            <x-slot name="rota" >{{$funcionario->rota}}</x-slot>
+                            <x-slot name="rota" >funcionarios.destroy</x-slot>
                     </x-modal-delete>
                 </td>
             </tr>
