@@ -12,9 +12,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all()-> sortBy('name');
+        $user = User::all()-> sortBy('name');
         // receber os dados do banco atraves dos modulos
-      return view('users.index', compact('users'));
+      return view('users.index', compact('user'));
     }
 
     /**
@@ -22,8 +22,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $users = User::all()->sortBy('name');
-        return view('users.create', compact('users'));
+        $user = User::all()->sortBy('name');
+        return view('users.create', compact('user'));
     }
 
     /**
@@ -33,8 +33,10 @@ class UserController extends Controller
     {
         $input = $request->toArray();
         //dd($input);
+        $input['password'] = bcrypt($input['password']);
 
         $input['user_id'] = 1;
+
         User::create($input);
 
         return redirect()->route('users.index')->with('sucesso', 'Departamento cadastrado com sucesso!');
@@ -53,14 +55,14 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $users = User::find($id);
+        $user = User::find($id);
 
-        if(!$users){
+        if(!$user){
            return back();
        }
 
 
-      return view('users.edit', compact('users'));
+      return view('users.edit', compact('user'));
     }
 
     /**
@@ -68,12 +70,19 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $users = User::find($id);
+        $user = User::find($id);
 
-        $users->nome = $request->input('nome');
-        $users->save();
+        $user->name = $request->input('name');
 
-        return redirect()->route('users.index')->with('sucesso', 'Funcionario alterado com sucesso!');
+        if ($request->has('password')) {
+            $user->password = bcrypt($request->input('password'));
+        }
+
+        $user->tipo = $request->input('tipo');
+
+        $user->save();
+
+        return redirect()->route('users.index')->with('sucesso', 'Usuário alterado com sucesso!');
     }
 
     /**

@@ -29,7 +29,8 @@ Route::put('/funcionarios/{id}', [FuncionarioController::class, 'update'])-> nam
 Route::delete('/funcionarios/{id}', [FuncionarioController::class, 'destroy'])-> name('funcionarios.destroy');
 
 Route::get('/departamentos', [DepartamentoController::class, 'index'])-> name('departamentos.index');
-Route::post('/departamentos/create', [DepartamentoController::class, 'create'])-> name('departamentos.create');
+Route::post('/departamentos', [DepartamentoController::class, 'store'])-> name('departamentos.store');
+Route::get('/departamentos/create', [DepartamentoController::class, 'create'])-> name('departamentos.create');
 Route::get('/departamentos/{id}/edit', [DepartamentoController::class, 'edit'])-> name('departamentos.edit');
 Route::put('/departamentos/{id}', [DepartamentoController::class, 'update'])-> name('departamentos.update');
 Route::get('/departamentos/{id}', [DepartamentoController::class, 'destroy'])-> name('departamentos.destroy');

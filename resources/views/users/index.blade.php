@@ -6,7 +6,7 @@
         <x-slot name="route">{{ @route('users.create') }}</x-slot>
         <x-slot name="title">Cadastrar usuarios</x-slot>
     </x-btn-create>
-    <h1 class="fs-2 mb-3">Lista de Departamentos</h1>
+    <h1 class="fs-2 mb-3">Lista de Usuarios</h1>
 
     @if (Session::get('sucesso'))
         <div class="alert alert-success text-center">{{ Session::get('sucesso') }}</div>
@@ -25,14 +25,14 @@
         </thead>
         <tbody>
 
-            @foreach ($users as $user)
+            @foreach ($user as $users)
           <tr>
-            <th class="text-center" scope="row">{{ $user->id }}</th>
-            <td class="text-center">{{ $user->nome}}</td>
-            <td class="text-center">{{ $user->email}}</td>
-            <td class="text-center">{{ $user->tipo}}</td>
+            <th class="text-center" scope="row">{{ $users->id }}</th>
+            <td class="text-center">{{ $users->name}}</td>
+            <td class="text-center">{{ $users->email}}</td>
+            <td class="text-center">{{ $users->tipo}}</td>
             <td class="text-center">
-                <a href="{{ route('users.edit', $user->id) }}" title="Editar" class="btn btn-primary"><i class="bi bi-pen"></i></a>
+                <a href="{{ route('users.edit', $users->id) }}" title="Editar" class="btn btn-primary"><i class="bi bi-pen"></i></a>
                 <a href="" title="Deletar" class="btn btn-danger"><i class="bi bi-trash"></i></a>
             </td>
           </tr>

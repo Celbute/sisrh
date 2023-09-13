@@ -2,7 +2,7 @@
 @section('title', 'SisRH - Cadastro de usuários')
 
 @section('content')
-    <h1 class="fs-2 mb-3">Cadastro de Departamento</h1>
+    <h1 class="fs-2 mb-3">Cadastro de usuários</h1>
 
     <form class="row g-3" method="POST" action="{{ route('users.store') }}" enctype="multipart/form-data">
         @csrf <!--token for security-->
