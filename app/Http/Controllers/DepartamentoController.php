@@ -73,7 +73,7 @@ class DepartamentoController extends Controller
         $departamento->nome = $request->input('nome');
         $departamento->save();
 
-        return redirect()->route('departamentos.index')->with('sucesso', 'Funcionario alterado com sucesso!');
+        return redirect()->route('departamentos.index')->with('sucesso', 'Departamento alterado com sucesso!');
     }
 
     /**

@@ -39,7 +39,7 @@ class UserController extends Controller
 
         User::create($input);
 
-        return redirect()->route('users.index')->with('sucesso', 'Departamento cadastrado com sucesso!');
+        return redirect()->route('users.index')->with('sucesso', 'Usuários cadastrado com sucesso!');
     }
 
     /**
@@ -55,14 +55,14 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $user = User::find($id);
+        $users = User::find($id);
 
-        if(!$user){
+        if(!$users){
            return back();
        }
 
 
-      return view('users.edit', compact('user'));
+      return view('users.edit', compact('users'));
     }
 
     /**

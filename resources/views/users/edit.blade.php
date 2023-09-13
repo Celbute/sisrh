@@ -4,7 +4,7 @@
 
 @section('content')
     <h1 class="fs-2 mb-3"> Alterar Usarios</h1>
-    <form class="row g-3" method="POST" action="{{route('users.update', $user->id)}}"
+    <form class="row g-3" method="POST" action="{{route('users.update', $users->id)}}"
     enctype="multipart/form-data">
 
     @csrf
