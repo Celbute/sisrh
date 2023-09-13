@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Departamento;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class DepartamentoController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $departamento = Departamento::all()-> sortBy('nome');
+        $users = User::all()-> sortBy('name');
         // receber os dados do banco atraves dos modulos
-      return view('departamentos.index', compact('departamento'));
+      return view('users.index', compact('users'));
     }
 
     /**
@@ -22,8 +22,8 @@ class DepartamentoController extends Controller
      */
     public function create()
     {
-        $departamentos = Departamento::all()->sortBy('nome');
-        return view('departamentos.create', compact('departamentos'));
+        $users = User::all()->sortBy('name');
+        return view('users.create', compact('users'));
     }
 
     /**
@@ -35,9 +35,9 @@ class DepartamentoController extends Controller
         //dd($input);
 
         $input['user_id'] = 1;
-        Departamento::create($input);
+        User::create($input);
 
-        return redirect()->route('departamentos.index')->with('sucesso', 'Departamento cadastrado com sucesso!');
+        return redirect()->route('users.index')->with('sucesso', 'Departamento cadastrado com sucesso!');
     }
 
     /**
@@ -53,14 +53,14 @@ class DepartamentoController extends Controller
      */
     public function edit(string $id)
     {
-        $departamento = Departamento::find($id);
+        $users = User::find($id);
 
-        if(!$departamento){
+        if(!$users){
            return back();
        }
 
 
-      return view('departamentos.edit', compact('departamento'));
+      return view('users.edit', compact('users'));
     }
 
     /**
@@ -68,12 +68,12 @@ class DepartamentoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $departamento = Departamento::find($id);
+        $users = User::find($id);
 
-        $departamento->nome = $request->input('nome');
-        $departamento->save();
+        $users->nome = $request->input('nome');
+        $users->save();
 
-        return redirect()->route('departamentos.index')->with('sucesso', 'Funcionario alterado com sucesso!');
+        return redirect()->route('users.index')->with('sucesso', 'Funcionario alterado com sucesso!');
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cargo;
 use Illuminate\Http\Request;
 
 class CargoController extends Controller
@@ -11,7 +12,9 @@ class CargoController extends Controller
      */
     public function index()
     {
-        //
+        $cargos = Cargo::all()-> sortBy('name');
+        // receber os dados do banco atraves dos modulos
+      return view('cargos.index', compact('cargos'));
     }
 
     /**
@@ -19,7 +22,8 @@ class CargoController extends Controller
      */
     public function create()
     {
-        //
+        $cargos = Cargo::all()->sortBy('nome');
+        return view('cargos.create', compact('cargos'));
     }
 
     /**
@@ -27,7 +31,13 @@ class CargoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->toArray();
+        //dd($input);
+
+        $input['user_id'] = 1;
+        Cargo::create($input);
+
+        return redirect()->route('cargos.index')->with('sucesso', 'Departamento cadastrado com sucesso!');
     }
 
     /**
@@ -43,7 +53,14 @@ class CargoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $cargo = Cargo::find($id);
+
+        if(!$cargo){
+           return back();
+       }
+
+
+      return view('cargos.edit', compact('cargo'));
     }
 
     /**
@@ -51,7 +68,12 @@ class CargoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $cargo = Cargo::find($id);
+
+        $cargo->descricao = $request->input('descricao');
+        $cargo->save();
+
+        return redirect()->route('cargos.index')->with('sucesso', 'Cargo alterado com sucesso!');
     }
 
     /**

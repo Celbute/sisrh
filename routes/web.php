@@ -1,9 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CargoController;
+use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\FuncionarioController;
-use App\Models\Funcionario;
-
+use App\Http\Controllers\UserController;
+use App\Models\User;
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,3 +28,20 @@ Route::get('/funcionarios/{id}/edit', [FuncionarioController::class, 'edit'])-> 
 Route::put('/funcionarios/{id}', [FuncionarioController::class, 'update'])-> name('funcionarios.update');
 Route::delete('/funcionarios/{id}', [FuncionarioController::class, 'destroy'])-> name('funcionarios.destroy');
 
+Route::get('/departamentos', [DepartamentoController::class, 'index'])-> name('departamentos.index');
+Route::post('/departamentos/create', [DepartamentoController::class, 'create'])-> name('departamentos.create');
+Route::get('/departamentos/{id}/edit', [DepartamentoController::class, 'edit'])-> name('departamentos.edit');
+Route::put('/departamentos/{id}', [DepartamentoController::class, 'update'])-> name('departamentos.update');
+Route::get('/departamentos/{id}', [DepartamentoController::class, 'destroy'])-> name('departamentos.destroy');
+
+Route::get('/cargos', [CargoController::class, 'index'])->name('cargos.index');
+Route::post('/cargos', [CargoController::class, 'store'])->name('cargos.store');
+Route::get('/cargos/create', [CargoController::class, 'create'])->name('cargos.create');
+Route::put('/cargos/{id}', [CargoController::class, 'update'])->name('cargos.update');
+Route::get('/cargos/{id}/edit', [CargoController::class, 'edit'])->name('cargos.edit');
+
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
