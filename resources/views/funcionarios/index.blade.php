@@ -9,7 +9,7 @@
 
     <h1 class="fs-2 mb-3">Lista Funcionários</h1>
 
-    <p>Total de funcionarios: {{$totalFuncionarios}} </p>
+    <p>Total de funcionarios:  </p>
     @if (Session::get('sucesso'))
         <div class="alert alert-success text-center">{{ Session::get('sucesso') }}</div>
     @endif
