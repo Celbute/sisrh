@@ -3,18 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = User::all()-> sortBy('name');
+        //pagininação aqui
+
+        if(Gate::allows('type-user')){
+            $users = user::where('name','like','%' .$request->busca.'%') ;
+            $totalUsers= User::all()->count();
+
+            return view('users.index', compact('user','totalUsers'));
+
+        }else{
+            return back();
+        }
+
         // receber os dados do banco atraves dos modulos
-      return view('users.index', compact('user'));
+
     }
 
     /**
@@ -59,6 +77,11 @@ class UserController extends Controller
 
         if(!$users){
            return back();
+       }
+       if(auth()->user()->id == $users['id'] || auth()->user()->type == 'admin'){
+        return view('user.edit', compact('user'));
+       }else{
+        return back();
        }
 
 

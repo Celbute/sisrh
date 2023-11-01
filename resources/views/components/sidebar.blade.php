@@ -25,16 +25,20 @@
             </a>
         </li>
         </li>
-        <li class="nav-item">
-            <a href="{{route('users.index')}}" class="nav-link text-white btn btn-primary text-start">
-                <i class="bi bi-person mx-2 fs-5 align-middle"></i>usuários
-            </a>
-        </li>
+
         <li class="nav-item">
             <a href="#" class="nav-link text-white btn btn-primary text-start">
                 <i class="bi bi-star mx-2 fs-5 align-middle"></i>Beneficios
             </a>
         </li>
+
+        @can('typer-user')
+             <li class="nav-item">
+            <a href="{{route('users.index')}}" class="nav-link text-white btn btn-primary text-start">
+                <i class="bi bi-person mx-2 fs-5 align-middle"></i>usuários
+            </a>
+        </li>
+        @endcan
 
 
     <hr>
@@ -48,7 +52,7 @@
             <li>
                 <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" href="#">Sair</a></li>
+            <li><a class="dropdown-item" href="{{ route('login.logout') }}">Sair</a></li>
         </ul>
     </div>
 </div>
