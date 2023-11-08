@@ -10,7 +10,6 @@
 
     @if (Session::get('sucesso'))
         <div class="alert alert-success text-center">{{ Session::get('sucesso') }}</div>
-
     @endif
 
     <table class="table table-striped">

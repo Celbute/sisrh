@@ -6,6 +6,7 @@ use App\Models\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Symfony\Component\Console\Input\Input;
 
 class UserController extends Controller
 {
@@ -18,16 +19,15 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $user = User::all()-> sortBy('name');
+        $user = User::all()->sortBy('name');
         //pagininação aqui
 
-        if(Gate::allows('type-user')){
-            $users = user::where('name','like','%' .$request->busca.'%') ;
-            $totalUsers= User::all()->count();
+        if (Gate::allows('type-user')) {
+            $users = user::where('name', 'like', '%' . $request->busca . '%');
+            $totalUsers = User::all()->count();
 
-            return view('users.index', compact('user','totalUsers'));
-
-        }else{
+            return view('users.index', compact('user', 'totalUsers'));
+        } else {
             return back();
         }
 
@@ -75,17 +75,17 @@ class UserController extends Controller
     {
         $users = User::find($id);
 
-        if(!$users){
-           return back();
-       }
-       if(auth()->user()->id == $users['id'] || auth()->user()->type == 'admin'){
-        return view('user.edit', compact('user'));
-       }else{
-        return back();
-       }
+        if (!$users) {
+            return back();
+        }
+        if (auth()->user()->id == $users['id'] || auth()->user()->type == 'admin') {
+            return view('users.edit', compact('users'));
+        } else {
+            return back();
+        }
 
 
-      return view('users.edit', compact('users'));
+        return view('users.edit', compact('users'));
     }
 
     /**
@@ -93,19 +93,25 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
+        $input = $request->all();
+
         $user = User::find($id);
 
-        $user->name = $request->input('name');
-
         if ($request->has('password')) {
-            $user->password = bcrypt($request->input('password'));
+            $input['password'] = bcrypt($input['password']);
+        }else{
+            $input['password'] = $user->password;
         }
 
-        $user->tipo = $request->input('tipo');
-
+        $user->fill($input);
         $user->save();
 
-        return redirect()->route('users.index')->with('sucesso', 'Usuário alterado com sucesso!');
+        if ($user->tipo == 'admin') {
+            return redirect()->route('users.index')->with('sucesso', 'Usuário alterado com sucesso!');
+        } else {
+            return redirect()->route('users.edit', $user->id)->with('sucesso', 'Usuário alterado com sucesso!');
+        }
     }
 
     /**
