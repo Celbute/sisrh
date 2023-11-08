@@ -119,7 +119,7 @@ class FuncionarioController extends Controller
 
       $funcionario-> fill($input);
       $funcionario->save();
-      return redirect()->route('funcionario.index')->with('sucesso','Funcionario alterado com sucesso');
+      return redirect()->route('funcionarios.index')->with('sucesso','Funcionario alterado com sucesso');
 
     }
 

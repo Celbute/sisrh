@@ -18,6 +18,7 @@
           <tr class="text-center">
             <th scope="col">ID</th>
             <th scope="col">Nome</th>
+           <th scope="col"> funcionarios</th>
             <th scope="col">Ações</th>
           </tr>
         </thead>
@@ -27,6 +28,7 @@
           <tr>
             <th class="text-center" scope="row">{{ $departamentos->id }}</th>
             <td class="text-center">{{ $departamentos->nome}}</td>
+            <td class="text-center">{{ $departamentos->funcionariosAtivos->count();}}</td>
             <td class="text-center">
                 <a href="{{ route('departamentos.edit', $departamentos->id) }}" title="Editar" class="btn btn-primary"><i class="bi bi-pen"></i></a>
                 <a href="" title="Deletar" class="btn btn-danger"><i class="bi bi-trash"></i></a>

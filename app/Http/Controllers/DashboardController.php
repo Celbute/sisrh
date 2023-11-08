@@ -24,12 +24,10 @@ class DashboardController extends Controller
         //dados dos departamentos
 
         $departamentos = Departamento::all()->sortBy('nome');
-        foreach($departamentos As $departamento){
-            $nomeDepartamentos[]= "'" .$departamento->nome."'";
+        $cargos = Cargo::all()->sortBy('descricao');
 
-        }
 
         return view(('dashboard.index'),
-        compact('totalFuncionarios','totalCargos','totalDepartamentos','somaSalarios'));
+        compact('totalFuncionarios','totalCargos','totalDepartamentos','somaSalarios', 'departamentos','cargos'));
     }
 }
