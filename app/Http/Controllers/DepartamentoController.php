@@ -15,9 +15,10 @@ class DepartamentoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $departamento = Departamento::all()-> sortBy('nome');
+        $departamento = Departamento::where('nome','like', '%'.$request->busca.'%')->orderBy('nome','asc')->paginate(3);
+
         // receber os dados do banco atraves dos modulos
       return view('departamentos.index', compact('departamento'));
     }

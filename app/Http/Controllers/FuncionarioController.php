@@ -131,7 +131,7 @@ class FuncionarioController extends Controller
       }
 
       if($request->beneficios){
-       // $funcionario->beneficios()->sync($input->['beneficios']);
+        $funcionario->beneficios()->sync($input['beneficios']);
       }
 
       $funcionario-> fill($input);

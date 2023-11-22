@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Beneficio extends Model
 {
     use HasFactory;
+    protected $fillable =['descricao','status'];
+
+
+    public function funcionariosAtivos(){
+        return $this -> hasMany(Funcionario::class)-> where('status','on');
+    }
 }

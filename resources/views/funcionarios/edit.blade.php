@@ -12,6 +12,14 @@
 
         @include('funcionarios.partials.form')
 
+        <div class="col-md-6">
+            <label for="status" class="form-label">Status</label>
+            <select class="form-select" id="status" name="status">
+                <option value="on" {{ $funcionario->status === 'on' ? 'selected' : '' }}>Ativo</option>
+                <option value="off" {{ $funcionario->status === 'off' ? 'selected' : '' }}>Desligado</option>
+            </select>
+        </div>
+
         <div class="col-12">
             <button type="submit" class="btn btn-primary btn-lg">Cadastrar</button>
             <a href="{{ route('funcionarios.index') }}" class="btn btn-danger btn-lg">Cancelar</a>

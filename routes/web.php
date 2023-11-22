@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BeneficioController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartamentoController;
@@ -53,3 +54,9 @@ Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update
 Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
 
 
+Route::get('/beneficios', [BeneficioController::class, 'index'])-> name('beneficios.index');
+Route::get('/beneficios/create', [BeneficioController::class, 'create'])-> name('beneficios.create');
+Route::post('/beneficios',[BeneficioController::class, 'store'])->name('beneficios.store');
+Route::get('/beneficios/{id}/edit', [BeneficioController::class, 'edit'])-> name('beneficios.edit');
+Route::put('/beneficios/{id}', [BeneficioController::class, 'update'])-> name('beneficios.update');
+Route::delete('/beneficios/{id}', [BeneficioController::class, 'destroy'])-> name('beneficios.destroy');
